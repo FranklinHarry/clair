@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Clairctl - Clair Documentation</title>
+        <title>Metrics - Clair Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -177,100 +177,20 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="clairctl"><a class="header" href="#clairctl">Clairctl</a></h1>
-<p><code>clairctl</code> is a command line tool for working with Clair.
-This CLI is capable of generating manifests from most public registries
-(dockerhub, quay.io, Red Hat Container Catalog) and submitting them for
-analysis to a running Clair.</p>
-<p>Note that if the Clair instance has authentication configured, the value
-provided to the <code>issuer</code> flag must be on the list accepted by the server.</p>
-<pre><code>NAME:
-   clairctl - interact with a clair API
-
-USAGE:
-   clairctl [global options] command [command options] [arguments...]
-
-VERSION:
-   0.1.0
-
-DESCRIPTION:
-   A command-line tool for clair v4.
-
-COMMANDS:
-   manifest         print a clair manifest for the named container
-   report           request vulnerability reports for the named containers
-   export-updaters  run updaters and export results
-   import-updaters  import updates
-   help, h          Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-   -D                           print debugging logs (default: false)
-   --config value, -c value     clair configuration file (default: "config.yaml") [$CLAIR_CONF]
-   --issuer value, --iss value  jwt "issuer" to use when making authenticated requests (default: "clairctl")
-   --help, -h                   show help (default: false)
-   --version, -v                print the version (default: false)
-</code></pre>
-<pre><code>NAME:
-   clairctl manifest - print a clair manifest for the named container
-
-USAGE:
-   clairctl manifest [arguments...]
-
-DESCRIPTION:
-   print a clair manifest for the named container
-</code></pre>
-<pre><code>NAME:
-   clairctl report - request vulnerability reports for the named containers
-
-USAGE:
-   clairctl report [command options] container...
-
-DESCRIPTION:
-   Request and print a Clair vulnerability report for the named container(s).
-
-OPTIONS:
-   --host value           URL for the clairv4 v1 API. (default: "http://localhost:6060/") [$CLAIR_API]
-   --out value, -o value  output format: text, json, xml (default: text)
-</code></pre>
-<pre><code>NAME:
-   clairctl export-updaters - run updaters and export results
-
-USAGE:
-   clairctl export-updaters [command options] [out]
-
-DESCRIPTION:
-   Run configured exporters and export to a file.
-
-   A configuration file is needed to run this command, see 'clairctl help'
-   for how to specify one.
-
-OPTIONS:
-   --strict  Return non-zero exit when updaters report errors. (default: false)
-</code></pre>
-<pre><code>NAME:
-   clairctl import-updaters - import updates
-
-USAGE:
-   clairctl import-updaters input...
-
-DESCRIPTION:
-   Import updates from files or HTTP URIs.
-
-   A configuration file is needed to run this command, see 'clairctl help'
-   for how to specify one.
-</code></pre>
+                        <p>Clair exports <a href="./config.html#metrics">metrics</a> on the <a href="./config.html#introspection_addr">introspection
+port</a> in the Prometheus format.</p>
+<p>The exact metrics exposed are not considered API (and so are subject to change
+between releases) but should be well described. An up-to-date grafana dashboard
+example is in <code>contrib/openshift/grafana</code>.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../reference/api.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../reference/notifier.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../reference/config.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -278,13 +198,10 @@ DESCRIPTION:
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../reference/api.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../reference/notifier.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../reference/config.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>
